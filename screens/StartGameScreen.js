@@ -12,7 +12,9 @@ const StartGameScreen = () => {
             <Text style={styles.title} >Game Screen</Text>
             <Card style={styles.inputWrapper} >
                 <Text>Select a Number</Text>
-                <Input style={styles.input} />
+                <Input style={styles.input} blurOnSubmit
+                    autoCapitalize='none' autoCorrect='false'
+                    keyboardType='numeric' maxLength={2} />
                 <View style={styles.buttonWrapper} >
                     <View>
                         <Button style={styles.button}
