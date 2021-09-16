@@ -3,6 +3,9 @@ import { View, StyleSheet, Button, Text, } from 'react-native'
 
 const Card = (props) => {
     return (
+        // Distibute all the key value pairs of card into new object
+        //  Child akan override styling yg diorg dapat daripada 
+        // parent style dekat component file
         <View style={{...styles.card, ...props.style}} >
             {props.children}
         </View>
