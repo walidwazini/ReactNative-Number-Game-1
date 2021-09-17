@@ -26,13 +26,20 @@ const StartGameScreen = () => {
     const confirmInputHandler = () => {
         const choosenNumber = parseInt(enteredValue)
         // Make sure only positive number are allowed
-        if (choosenNumber === NaN || choosenNumber <= 0){
+        if (choosenNumber === NaN || choosenNumber <= 0 || choosenNumber > 99){
             return;
         }
         setConfirmed(true)
         setEnteredValue('')
         setSelectedNumber(parseInt(enteredValue))
     }
+
+    let confirmedOutput
+
+    if (confirmed){
+        confirmedOutput = <Text>Choosen Number : {selectedNumber} </Text>
+    }
+
 
     return (
         <TouchableWithoutFeedback onPress={() => {
@@ -43,7 +50,8 @@ const StartGameScreen = () => {
                 <Card style={styles.inputWrapper} >
                     <Text>Select a Number</Text>
                     <Input style={styles.input} blurOnSubmit
-                        autoCapitalize='none' autoCorrect='false'
+                        autoCapitalize='none' 
+                        //autoCorrect='false'
                         keyboardType='number-pad' maxLength={2}
                         onChangeText={numberInputHandler}
                         value={enteredValue}
@@ -55,10 +63,11 @@ const StartGameScreen = () => {
                         </View>
                         <View>
                             <Button style={styles.button}
-                                title='Confirm' onPress={() => { }} color={colors.primary} />
+                                title='Confirm' onPress={confirmInputHandler} color={colors.primary} />
                         </View>
                     </View>
                 </Card>
+                {confirmedOutput}
             </View>
         </TouchableWithoutFeedback>
     )
