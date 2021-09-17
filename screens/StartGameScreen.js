@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {
     View, Text, StyleSheet, TouchableWithoutFeedback,
-    TextInput, Button, Keyboard
+    TextInput, Button, Keyboard, Alert
 } from 'react-native'
 
 import Card from '../components/Card'
@@ -26,7 +26,10 @@ const StartGameScreen = () => {
     const confirmInputHandler = () => {
         const choosenNumber = parseInt(enteredValue)
         // Make sure only positive number are allowed
-        if (choosenNumber === NaN || choosenNumber <= 0 || choosenNumber > 99){
+        if (choosenNumber === NaN || choosenNumber <= 0 || choosenNumber > 99) {
+            Alert.alert('Invalid input', 'Number has to be between 1 - 99', [{
+                text: 'Okay', style: 'destructive', onPress: resetInputHandler
+            }])
             return;
         }
         setConfirmed(true)
@@ -35,8 +38,7 @@ const StartGameScreen = () => {
     }
 
     let confirmedOutput
-
-    if (confirmed){
+    if (confirmed) {
         confirmedOutput = <Text>Choosen Number : {selectedNumber} </Text>
     }
 
@@ -50,7 +52,7 @@ const StartGameScreen = () => {
                 <Card style={styles.inputWrapper} >
                     <Text>Select a Number</Text>
                     <Input style={styles.input} blurOnSubmit
-                        autoCapitalize='none' 
+                        autoCapitalize='none'
                         //autoCorrect='false'
                         keyboardType='number-pad' maxLength={2}
                         onChangeText={numberInputHandler}
