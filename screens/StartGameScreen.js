@@ -10,11 +10,28 @@ import colors from '../assets/colors'
 
 
 const StartGameScreen = () => {
-
     const [enteredValue, setEnteredValue] = useState('')
+    const [confirmed, setConfirmed] = useState(false)
+    const [selectedNumber, setSelectedNumber] = useState()
+
     const numberInputHandler = (inputText) => {
         // Avoid user to input non-number value ( for Android)
         setEnteredValue(inputText.replace(/[^0-9]/g, ''))
+    }
+    const resetInputHandler = () => {
+        // Reset the enterered value
+        setEnteredValue('')
+        setConfirmed(false)
+    }
+    const confirmInputHandler = () => {
+        const choosenNumber = parseInt(enteredValue)
+        // Make sure only positive number are allowed
+        if (choosenNumber === NaN || choosenNumber <= 0){
+            return;
+        }
+        setConfirmed(true)
+        setEnteredValue('')
+        setSelectedNumber(parseInt(enteredValue))
     }
 
     return (
@@ -34,7 +51,7 @@ const StartGameScreen = () => {
                     <View style={styles.buttonWrapper} >
                         <View>
                             <Button style={styles.button}
-                                title='Reset' onPress={() => { }} color={colors.accent} />
+                                title='Reset' onPress={resetInputHandler} color={colors.accent} />
                         </View>
                         <View>
                             <Button style={styles.button}
