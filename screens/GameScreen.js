@@ -24,10 +24,10 @@ const GameScreen = (props) => {
 
 
     return (
-        <View>
+        <View style={styles.screen} >
             <Text>Opponent's Guess</Text>
             <NumberContainer>{currentGuess}</NumberContainer>
-            <Card>
+            <Card style={styles.buttonContainer} >
                 <Button title='SMALLER' onPress={() => {}} />
                 <Button title='GREATER' onPress={() => {}} />
             </Card>
@@ -36,7 +36,17 @@ const GameScreen = (props) => {
 }
 
 const styles = StyleSheet.create({
-
+    screen: {
+        flex: 1,
+        padding: 1,
+        alignItems: 'center'
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: 20,
+        width: '80%'
+    }
 })
 
 export default GameScreen
