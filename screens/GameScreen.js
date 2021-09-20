@@ -24,11 +24,14 @@ const GameScreen = (props) => {
     const currentLow = useRef(1)
     const currentHigh = useRef(100)
 
+    // Object destructuring
+    const { userChoice, onGameOver } = props
+
     useEffect(() => {
-        if (currentGuess === props.userChoice){
-            props.onGameOver(rounds)
+        if (currentGuess === userChoice) {
+            onGameOver(rounds)
         }
-    })
+    }, [currentGuess,userChoice,onGameOver])
 
     const nextGuessHandler = size => {
         //   CHECK BALEK useChoice kat sini nanti
